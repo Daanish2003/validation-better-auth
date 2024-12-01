@@ -3,7 +3,7 @@ A flexible and extensible validation plugin for the Better Auth framework. This 
 
 ## usage
 ```import { betterAuth } from "better-auth"
-import { twoFactor } from "better-auth/plugins"
+import { validator, ZodAdapter} from "validation-better-auth"
  
 export const auth = betterAuth({
     // ... other config options
