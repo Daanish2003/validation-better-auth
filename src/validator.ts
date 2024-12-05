@@ -1,8 +1,13 @@
 import { BetterAuthPlugin, createAuthMiddleware } from 'better-auth/plugins';
 import { APIError } from 'better-auth/api';
 
+export type ValidationError = {
+   field?: string,
+   message: string
+};
+
 export interface ValidationAdapter {
-  validate: (data: any) => Promise<void>;
+  validate: (data: Record<string, any>) => Promise<void | ValidationError[]>;
 }
 
 interface ValidationConfig {
