@@ -1,14 +1,17 @@
 {
   "name": "validation-better-auth",
-  "version": "1.0.3",
+  "version": "1.0.9",
   "description": "A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using any validation library (e.g., Zod, Yup)",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "vitest",
-    "build": "tsup"
+    "build": "tsup",
+    "publish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,7 +21,8 @@
     "[\"better-auth\"",
     "\"auth\"",
     "\"typescript\"",
-    "\"plugin\"]"
+    "\"plugin\"",
+    "\"validation-better-auth\""
   ],
   "author": "daanish",
   "license": "MIT",
