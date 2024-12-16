@@ -2,7 +2,8 @@
 A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using any validation library (e.g., Zod, Yup)
 
 ## usage
-```import { betterAuth } from "better-auth"
+```ts
+import { betterAuth } from "better-auth"
 import { validator, ZodAdapter} from "validation-better-auth"
  
 export const auth = betterAuth({
