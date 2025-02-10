@@ -11,9 +11,10 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
 
-      - name: Use Node LTS ✨
+      - name: Setup Node LTS ✨
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
@@ -23,9 +24,13 @@ jobs:
       - name: Install dependencies 📦️
         run: pnpm install --frozen-lockfile
 
-      - name: Build 🔨
+      - name: Run tests 🧪
+        run: pnpm test
+
+      - name: Build project 🔨
         run: pnpm build
 
-      - uses: simenandre/publish-with-pnpm@v2
+      - name: Publish to npm 🚀
+        uses: simenandre/publish-with-pnpm@v2
         with:
           npm-auth-token: ${{ secrets.NPM_TOKEN }}
