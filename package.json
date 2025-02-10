@@ -37,8 +37,7 @@
     "vitest": "^2.1.6"
   },
   "dependencies": {
-    "better-auth": "^1.0.7",
-    "yup": "^1.4.0",
-    "zod": "^3.23.8"
+    "@standard-schema/spec": "^1.0.0",
+    "yup": "^1.4.0"
   }
 }

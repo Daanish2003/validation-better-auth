@@ -1,10 +1,12 @@
 # validation-better-auth
-A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using any validation library (e.g., Zod, Yup)
+
+A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using any standard schema library (e.g. Zod, Valibot, ArkType). We also support Yup by wrapping the schema internally to Standard Schema.
 
 ## usage
+
 ```ts
 import { betterAuth } from "better-auth"
-import { validator, ZodAdapter} from "validation-better-auth"
+import { validator, StandardAdapter} from "validation-better-auth"
  
 export const auth = betterAuth({
     // ... other config options
@@ -12,12 +14,12 @@ export const auth = betterAuth({
     plugins: [
         validator(
       [
-        {path: "/sign-up/email", adapter: ZodAdapter(SignupSchema)},
-        {path: "/sign-in/email", adapter: ZodAdapter(SignInSchema)},
-        {path: "/two-factor/enable", adapter: ZodAdapter(PasswordSchema)},
-        {path: "/two-factor/disable", adapter: ZodAdapter(PasswordSchema)},
-        {path: "/two-factor/verify-otp", adapter: ZodAdapter(twoFactorSchema)},
-        {path: "/forgot-password", adapter: ZodAdapter(ForgotPasswordSchema)},
+        {path: "/sign-up/email", adapter: StandardAdapter(SignupSchema)},
+        {path: "/sign-in/email", adapter: StandardAdapter(SignInSchema)},
+        {path: "/two-factor/enable", adapter: StandardAdapter(PasswordSchema)},
+        {path: "/two-factor/disable", adapter: StandardAdapter(PasswordSchema)},
+        {path: "/two-factor/verify-otp", adapter: StandardAdapter(twoFactorSchema)},
+        {path: "/forgot-password", adapter: StandardAdapter(ForgotPasswordSchema)},
       ]
     ),
     ]
