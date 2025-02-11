@@ -38,7 +38,7 @@ jobs:
           if [ -z "$(git tag)" ]; then
             echo "No Git tags found. Creating default v0.1.0 tag..."
             git tag v0.1.0
-            git push origin v0.1.0
+            git push origin v1.1.0
           fi
 
       - name: Publish to npm 🚀
