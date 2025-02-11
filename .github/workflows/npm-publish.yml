@@ -36,8 +36,8 @@ jobs:
       - name: Ensure Git tags exist ✅
         run: |
           if [ -z "$(git tag)" ]; then
-            echo "No Git tags found. Creating default v0.1.0 tag..."
-            git tag v0.1.0
+            echo "No Git tags found. Creating default v1.1.0 tag..."
+            git tag v1.1.0
             git push origin v1.1.0
           fi
 
