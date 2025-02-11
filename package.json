@@ -25,7 +25,7 @@
     "\"validation-better-auth\""
   ],
   "publishConfig": {
-    
+    "registry": "https://registry.npmjs.org/"
   },
   "author": "daanish",
   "license": "MIT",
