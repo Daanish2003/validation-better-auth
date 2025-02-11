@@ -3,9 +3,9 @@
 name: Node.js Package deploy
 on:
   push:
-    branches: [  ]
+    branches: [ main ]
   pull_request:
-    branches: [ react-ui-package ]
+    branches: [ main ]
 jobs:
   build:
     runs-on: ubuntu-latest
