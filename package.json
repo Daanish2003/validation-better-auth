@@ -11,7 +11,10 @@
   "scripts": {
     "test": "vitest",
     "build": "tsup",
-    "publish": "npm run build"
+    "publish": "npm run build",
+    "ts": "tsc",
+    "quality": "biome check .",
+    "quality-fix": "biome check . --write --unsafe"
   },
   "repository": {
     "type": "git",
@@ -34,15 +37,17 @@
   },
   "homepage": "https://github.com/Daanish2003/better-auth-validator#readme",
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "ts-node": "^10.9.2",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.6"
+    "valibot": "1.0.0-rc.0",
+    "vitest": "^2.1.6",
+    "yup": "^1.4.0"
   },
   "dependencies": {
     "@standard-schema/spec": "^1.0.0",
-    "better-auth": "^1.1.16",
-    "yup": "^1.4.0"
+    "better-auth": "^1.1.16"
   },
   "packageManager": "pnpm@10.2.1+sha512.398035c7bd696d0ba0b10a688ed558285329d27ea994804a52bad9167d8e3a72bcb993f9699585d3ca25779ac64949ef422757a6c31102c12ab932e5cbe5cc92"
 }
