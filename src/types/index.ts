@@ -25,19 +25,22 @@ export type YupStandardSchema<Y extends yup.Schema<any>> = Y & {
 };
 
 
-export type ValidationAdapter = (<T extends StandardSchemaV1>(
+export type ValidationAdapter<T extends StandardSchemaV1> = (
   schema: T
 ) => {
   validate: (
     input: StandardSchemaV1.InferInput<T>
   ) => Promise<StandardSchemaV1.InferOutput<T>>;
-}) | (<T extends yup.Schema<any>>(
+};
+
+export type YupValidationAdapter<T extends yup.Schema<any>> = (
   schema: T
 ) => {
   validate: (
     input: StandardSchemaV1.InferInput<YupStandardSchema<T>>
   ) => Promise<StandardSchemaV1.InferOutput<YupStandardSchema<T>>>;
-});
+};
+
 
 
 export type ValidationConfig = {

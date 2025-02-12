@@ -2,7 +2,7 @@ import type { StandardSchemaV1 } from '@standard-schema/spec'
 import type { ValidationAdapter } from '../../types';
 
 
-export const StandardAdapter: ValidationAdapter = <T extends StandardSchemaV1>(
+export const StandardAdapter: ValidationAdapter<StandardSchemaV1> = <T extends StandardSchemaV1>(
   schema: T
 ) => {
   return {
