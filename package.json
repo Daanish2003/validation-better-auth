@@ -43,7 +43,8 @@
     "typescript": "^5.7.2",
     "valibot": "1.0.0-rc.0",
     "vitest": "^2.1.6",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zod": "^3.24.2"
   },
   "dependencies": {
     "@standard-schema/spec": "^1.0.0",

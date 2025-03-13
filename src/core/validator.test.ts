@@ -3,6 +3,7 @@ import * as v from "valibot";
 import { describe, it } from "vitest";
 import { object, string } from "yup";
 import { StandardAdapter, YupAdapter, validator } from "../index";
+import { z } from "zod";
 
 describe("validator", () => {
   it("initializes without errors with valibot", () => {
@@ -32,6 +33,22 @@ describe("validator", () => {
       plugins: [
         validator([
           { path: "/sign-up/email", adapter: YupAdapter(signupSchema) },
+        ]),
+      ],
+    });
+  });
+
+  it("initializes without errors with zod", () => {
+    const signupSchema = z.object({
+      name: z.string(),
+      email: z.string().email(),
+      password: z.string().min(12),
+    });
+
+    betterAuth({
+      plugins: [
+        validator([
+          { path: "/sign-up/email", adapter: StandardAdapter(signupSchema) },
         ]),
       ],
     });
