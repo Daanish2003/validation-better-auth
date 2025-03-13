@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "test": "vitest",
-    "build": "tsup",
+    "build": "tsc -p tsconfig.json",
     "publish": "npm run build",
     "ts": "tsc",
     "quality": "biome check .",
