@@ -2,6 +2,7 @@ import { BetterAuthPlugin } from "better-auth/types";
 import { createAuthMiddleware } from "better-auth/plugins";
 import { APIError } from "better-auth/api";
 import { ValidationConfig } from "../types";
+import { Endpoint } from "better-auth/*";
 
 export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
   return {
@@ -26,7 +27,7 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
             details: error,
           });
         }
-      }),
+      }) as Endpoint,
     })),
   };
 };
