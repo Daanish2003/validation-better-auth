@@ -1,15 +1,13 @@
 import * as yup from "yup";
-import type { StandardSchemaV1 } from '@standard-schema/spec';
-
+import type { StandardSchemaV1 } from "@standard-schema/spec";
+import type { APIError } from "better-auth/api";
 
 // Only required until following PR is completed: https://github.com/jquense/yup/pull/2258
 export type YupStandardSchema<Y extends yup.Schema<any>> = Y & {
-  '~standard': {
+  "~standard": {
     version: 1;
-    vendor: 'yup';
-    validate: (
-      value: unknown
-    ) =>
+    vendor: "yup";
+    validate: (value: unknown) =>
       | { value: yup.InferType<Y> }
       | {
           issues: ReadonlyArray<{
@@ -24,24 +22,17 @@ export type YupStandardSchema<Y extends yup.Schema<any>> = Y & {
   };
 };
 
-
-export type ValidationAdapter<T extends StandardSchemaV1> = (
-  schema: T
-) => {
+export type ValidationAdapter<T extends StandardSchemaV1> = (schema: T) => {
   validate: (
     input: StandardSchemaV1.InferInput<T>
   ) => Promise<StandardSchemaV1.InferOutput<T>>;
 };
 
-export type YupValidationAdapter<T extends yup.Schema<any>> = (
-  schema: T
-) => {
+export type YupValidationAdapter<T extends yup.Schema<any>> = (schema: T) => {
   validate: (
     input: StandardSchemaV1.InferInput<YupStandardSchema<T>>
   ) => Promise<StandardSchemaV1.InferOutput<YupStandardSchema<T>>>;
 };
-
-
 
 export type ValidationConfig = {
   path: string;
@@ -50,4 +41,8 @@ export type ValidationConfig = {
       input: StandardSchemaV1.InferInput<any>
     ) => Promise<StandardSchemaV1.InferOutput<any>>;
   };
+};
+
+export type ValidationOptions = {
+  customError?: (error: unknown) => APIError;
 };

@@ -1,8 +1,11 @@
 import { BetterAuthPlugin } from "better-auth/types";
 import { APIError } from "better-auth/api";
-import { ValidationConfig } from "../types";
+import { ValidationConfig, ValidationOptions } from "../types";
 
-export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
+export const validator = (
+  configs: ValidationConfig[],
+  { customError }: ValidationOptions = {}
+): BetterAuthPlugin => {
   return {
     id: "validator",
     hooks: {
@@ -13,18 +16,22 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
             const result = await adapter.validate(ctx.body);
 
             if (result.error) {
-              throw new APIError("BAD_REQUEST", {
-                message: "Validation failed",
-                details: result.error,
-              });
+              throw customError
+                ? customError(result.error)
+                : new APIError("BAD_REQUEST", {
+                    message: "Validation failed",
+                    details: result.error,
+                  });
             }
 
             ctx.body = result.data;
           } catch (error) {
-            throw new APIError("INTERNAL_SERVER_ERROR", {
-              message: "Invalid Fields",
-              details: error,
-            });
+            throw customError
+              ? customError(error as Error)
+              : new APIError("INTERNAL_SERVER_ERROR", {
+                  message: "Invalid Fields",
+                  details: error,
+                });
           }
         },
       })),
