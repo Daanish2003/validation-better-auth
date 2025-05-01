@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.2.5
+
+### Patch Changes
+
+- b2ce4cb: fix-error-handling
+
 ## 1.2.4
 
 ### Patch Changes
