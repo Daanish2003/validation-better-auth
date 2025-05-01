@@ -1,5 +1,12 @@
 # validation-better-auth
 
+## 1.2.3
+
+### Patch Changes
+
+- e056a1d: update dist folder
+- 4e20b43: fix-patch
+
 ## 1.2.2
 
 ### Patch Changes
