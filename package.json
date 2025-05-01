@@ -1,6 +1,6 @@
 {
   "name": "validation-better-auth",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using standard library",
   "private": "false",
   "main": "./dist/index.js",
@@ -52,6 +52,5 @@
     "yup": "^1.6.1",
     "zod": "^3.24.3"
   },
-
   "packageManager": "pnpm@10.2.1+sha512.398035c7bd696d0ba0b10a688ed558285329d27ea994804a52bad9167d8e3a72bcb993f9699585d3ca25779ac64949ef422757a6c31102c12ab932e5cbe5cc92"
 }
