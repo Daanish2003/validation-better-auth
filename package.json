@@ -2,19 +2,22 @@
   "name": "validation-better-auth",
   "version": "1.1.1",
   "description": "A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using standard library",
+  "private": "false",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
+  "type": "module",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "test": "vitest",
-    "build": "tsup",
-    "publish": "npm run build",
-    "ts": "tsc",
+    "build": "tsc",
+    "publish": "pnpm run build",
+    "lint": "tsc",
     "quality": "biome check .",
-    "quality-fix": "biome check . --write --unsafe"
+    "quality-fix": "biome check . --write --unsafe",
+    "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish"
   },
   "repository": {
     "type": "git",
@@ -38,16 +41,14 @@
   "homepage": "https://github.com/Daanish2003/better-auth-validator#readme",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "ts-node": "^10.9.2",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2",
+    "@changesets/cli": "^2.29.2",
+    "arktype": "^2.1.20",
+    "better-auth": "^1.2.7",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
     "valibot": "1.0.0-rc.0",
-    "vitest": "^2.1.6",
-    "yup": "^1.4.0"
-  },
-  "dependencies": {
-    "@standard-schema/spec": "^1.0.0",
-    "better-auth": "^1.1.16"
-  },
-  "packageManager": "pnpm@10.2.1+sha512.398035c7bd696d0ba0b10a688ed558285329d27ea994804a52bad9167d8e3a72bcb993f9699585d3ca25779ac64949ef422757a6c31102c12ab932e5cbe5cc92"
+    "vitest": "^2.1.9",
+    "yup": "^1.6.1",
+    "zod": "^3.24.3"
+  }
 }
