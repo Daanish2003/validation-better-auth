@@ -2,7 +2,7 @@ import { BetterAuthPlugin } from "better-auth/types";
 import { createAuthMiddleware } from "better-auth/plugins";
 import { APIError } from "better-auth/api";
 import { ValidationConfig } from "../types/index";
-import { parseStandardSchema } from "./adapters/index";
+import { parseStandardSchema, ValidationError } from "./adapters/index";
 
 export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
   return {
@@ -18,21 +18,28 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
             } catch (err) {
               throw new APIError("BAD_REQUEST", {
                 message: "Pre-validation hook failed",
-                details: (err as Error).message,
+                details: err instanceof Error ? err.message : String(err),
               });
             }
           }
 
           // Adapter validation
           if (adapter) {
-            const result = await adapter.validate(ctx.body);
-            if (result.error) {
-              throw new APIError("BAD_REQUEST", {
-                message: "Adapter validation failed",
-                details: result.error,
-              });
+            try {
+              const result = await adapter.validate(ctx.body);
+              if (result.error) {
+                throw new APIError("BAD_REQUEST", {
+                  message: "Adapter validation failed",
+                  details: result.error,
+                });
+              }
+              ctx.body = result.data;
+            } catch (err) {
+               throw new APIError("BAD_REQUEST", {
+                 message: "Adapter validation failed unexpectedly",
+                 details: err instanceof Error ? err.message : String(err),
+               });
             }
-            ctx.body = result.data;
           }
 
           // Schema validation
@@ -41,10 +48,17 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
               const validatedData = await parseStandardSchema(schema, ctx.body);
               ctx.body = validatedData;
             } catch (validationError) {
-              throw new APIError("BAD_REQUEST", {
-                message: "Schema validation failed",
-                details: validationError instanceof Error ? validationError.message : String(validationError),
-              });
+              if (validationError instanceof ValidationError) {
+                throw new APIError("BAD_REQUEST", {
+                  message: "Schema validation failed",
+                  details: validationError.issues,
+                });
+              } else {
+                throw new APIError("BAD_REQUEST", {
+                  message: "Schema validation failed unexpectedly",
+                  details: validationError instanceof Error ? validationError.message : String(validationError),
+                });
+              }
             }
           }
 
@@ -62,6 +76,10 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
 
         } catch (error) {
           // Centralized error handling for unexpected errors
+          if (error instanceof APIError) {
+            // If it's already an APIError, re-throw it
+            throw error;
+          }
           throw new APIError("BAD_REQUEST", {
             message: "Validation failed",
             details: error instanceof Error ? error.message : String(error),
