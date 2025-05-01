@@ -1,6 +1,6 @@
 {
   "name": "validation-better-auth",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using standard library",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -23,11 +23,11 @@
     "url": "git+https://github.com/Daanish2003/better-auth-validator.git"
   },
   "keywords": [
-  "[\"better-auth\"",
-  "\"auth\"",
-  "\"typescript\"",
-  "\"plugin\"",
-  "\"validation-better-auth\""
+    "[\"better-auth\"",
+    "\"auth\"",
+    "\"typescript\"",
+    "\"plugin\"",
+    "\"validation-better-auth\""
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
