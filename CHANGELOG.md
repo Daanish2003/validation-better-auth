@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.2.1
+
+### Patch Changes
+
+- 6f101e9: publish error
+
 ## 1.2.0
 
 ### Minor Changes
