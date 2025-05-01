@@ -12,14 +12,19 @@ export async function parseStandardSchema<TSchema extends StandardSchemaV1>(
 	return result.value;
 }
 
-
 export class ValidationError extends Error {
 	public readonly issues: ReadonlyArray<StandardSchemaV1.Issue>;
 
 	constructor(issues: ReadonlyArray<StandardSchemaV1.Issue>, message?: string) {
-		super(message || JSON.stringify(issues, null, 2));
+		// Create a more descriptive message if one wasn't provided
+		const defaultMessage = issues.length > 0 
+			? `Validation failed with ${issues.length} issues:\n${issues.map(i => 
+				`- ${i.path?.join('.')}: ${i.message}`).join('\n')}`
+			: 'Validation failed with unknown issues';
+			
+		super(message || defaultMessage);
 		this.issues = issues;
+		this.name = 'ValidationError';
 		Object.setPrototypeOf(this, ValidationError.prototype);
 	}
 }
-
