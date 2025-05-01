@@ -1,6 +1,6 @@
 import * as yup from "yup";
-import type { StandardSchemaV1 } from '@standard-schema/spec';
 import type { YupValidationAdapter, YupStandardSchema } from "../../types";
+import { StandardSchemaV1 } from "../../types/standard-schema";
 
 
 function standardizeYup<Schema extends yup.Schema>(
@@ -40,11 +40,7 @@ function standardizeYup<Schema extends yup.Schema>(
   };
 }
 
-/**
- * 
- * @summary Yup has a PR to implement standard validator. If this gets merged in then YupAdapter will be removed for the StandardAdapter
- * https://github.com/jquense/yup/pull/2258
- */
+
 export const YupAdapter: YupValidationAdapter<yup.Schema<any>> = <T extends yup.Schema<any>>(
   schema: T
 ) => {
