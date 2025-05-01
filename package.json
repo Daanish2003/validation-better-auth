@@ -3,15 +3,15 @@
   "version": "1.2.2",
   "description": "A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using standard library",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "type": "module",
+  "module": "./dist/index.js",
+  "type": "commonjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "test": "vitest run",
-    "build": "tsc",
+    "build": "tsup",
     "lint": "tsc",
     "quality": "biome check .",
     "quality-fix": "biome check . --write --unsafe",
@@ -23,11 +23,11 @@
     "url": "git+https://github.com/Daanish2003/better-auth-validator.git"
   },
   "keywords": [
-    "[\"better-auth\"",
-    "\"auth\"",
-    "\"typescript\"",
-    "\"plugin\"",
-    "\"validation-better-auth\""
+  "[\"better-auth\"",
+  "\"auth\"",
+  "\"typescript\"",
+  "\"plugin\"",
+  "\"validation-better-auth\""
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -39,11 +39,13 @@
     "url": "https://github.com/Daanish2003/better-auth-validator/issues"
   },
   "homepage": "https://github.com/Daanish2003/better-auth-validator#readme",
+  "dependencies": {
+    "better-auth": "^1.2.7"
+  },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@changesets/cli": "^2.29.2",
     "arktype": "^2.1.20",
-    "better-auth": "^1.2.7",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
     "valibot": "1.0.0-rc.0",

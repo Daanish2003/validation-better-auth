@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import type { YupValidationAdapter, YupStandardSchema } from "../../types";
+import type { YupValidationAdapter, YupStandardSchema } from "../../types/index";
 import { StandardSchemaV1 } from "../../types/standard-schema";
 
 

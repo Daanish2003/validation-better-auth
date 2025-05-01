@@ -1,4 +1,4 @@
-import { StandardSchemaV1 } from "better-auth/*";
+import { StandardSchemaV1 } from "../../types/standard-schema";
 
 export async function parseStandardSchema<TSchema extends StandardSchemaV1>(
 	schema: TSchema,
