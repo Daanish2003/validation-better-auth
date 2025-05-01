@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.2.7
+
+### Patch Changes
+
+- 5457de8: improve-error-logs
+
 ## 1.2.6
 
 ### Patch Changes
