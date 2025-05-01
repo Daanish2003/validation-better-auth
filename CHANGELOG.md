@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.2.6
+
+### Patch Changes
+
+- 454bc0d: error-handling-improvement
+
 ## 1.2.5
 
 ### Patch Changes
