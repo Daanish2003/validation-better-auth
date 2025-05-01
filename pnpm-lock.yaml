@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      better-auth:
-        specifier: ^1.2.7
-        version: 1.2.7
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.9.4
@@ -21,6 +17,9 @@ importers:
       arktype:
         specifier: ^2.1.20
         version: 2.1.20
+      better-auth:
+        specifier: ^1.2.7
+        version: 1.2.7
       tsup:
         specifier: ^8.4.0
         version: 8.4.0(postcss@8.5.3)(typescript@5.8.3)
