@@ -13,7 +13,6 @@
   "scripts": {
     "test": "vitest",
     "build": "tsc",
-    "publish": "pnpm run build",
     "lint": "tsc",
     "quality": "biome check .",
     "quality-fix": "biome check . --write --unsafe",
