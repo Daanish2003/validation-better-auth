@@ -1,5 +1,13 @@
 # validation-better-auth
 
+## 1.2.2
+
+### Patch Changes
+
+- c275fcb: update readme
+- d32e2e5: update access
+- d648ad7: update-private
+
 ## 1.2.1
 
 ### Patch Changes
