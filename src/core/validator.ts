@@ -11,6 +11,7 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
       path,
       middleware: createAuthMiddleware(async (ctx) => {
         try {
+          // Pre-validation hook
           if (before) {
             try {
               before(ctx);
@@ -22,56 +23,32 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
             }
           }
 
-          if(adapter) {
+          // Adapter validation
+          if (adapter) {
+            const result = await adapter.validate(ctx.body);
+            if (result.error) {
+              throw new APIError("BAD_REQUEST", {
+                message: "Adapter validation failed",
+                details: result.error,
+              });
+            }
+            ctx.body = result.data;
+          }
+
+          // Schema validation
+          if (schema) {
             try {
-              const result = await adapter.validate(ctx.body);
-    
-              if (result.error) {
-                throw new APIError("BAD_REQUEST", {
-                  message: "Validation failed",
-                  details: result.error,
-                });
-              }
-    
-              ctx.body = result.data;
-            } catch (error) {
-              throw new APIError("INTERNAL_SERVER_ERROR", {
-                message: "Invalid Fields",
-                details: error,
+              const validatedData = await parseStandardSchema(schema, ctx.body);
+              ctx.body = validatedData;
+            } catch (validationError) {
+              throw new APIError("BAD_REQUEST", {
+                message: "Schema validation failed",
+                details: validationError instanceof Error ? validationError.message : String(validationError),
               });
             }
           }
 
-          if(schema) {
-            try {
-              const validatedData = await parseStandardSchema(schema, ctx.body)
-              
-              ctx.body = validatedData;
-            } catch (validationError) {
-              if (validationError instanceof Error) {
-                try {
-                  const issues = JSON.parse(validationError.message);
-                  throw new APIError("BAD_REQUEST", {
-                    message: "Validation failed",
-                    details: {
-                      issues
-                    },
-                  });
-                } catch (parseError) {
-                  throw new APIError("BAD_REQUEST", {
-                    message: "Validation failed",
-                    details: validationError.message,
-                  });
-                }
-              } else {
-                throw new APIError("BAD_REQUEST", {
-                  message: "Validation failed",
-                  details: String(validationError),
-                });
-              }
-            }
-          }
-
+          // Post-validation hook
           if (after) {
             try {
               after(ctx);
@@ -82,7 +59,9 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
               });
             }
           }
+
         } catch (error) {
+          // Centralized error handling for unexpected errors
           throw new APIError("BAD_REQUEST", {
             message: "Validation failed",
             details: error instanceof Error ? error.message : String(error),
