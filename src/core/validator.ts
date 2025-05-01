@@ -36,8 +36,8 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
               ctx.body = result.data;
             } catch (err) {
                throw new APIError("BAD_REQUEST", {
-                 message: "Adapter validation failed unexpectedly",
-                 details: err instanceof Error ? err.message : String(err),
+                message: "Adapter validation failed unexpectedly",
+                details: err instanceof Error ? err.message : String(err),
                });
             }
           }
@@ -49,9 +49,13 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
               ctx.body = validatedData;
             } catch (validationError) {
               if (validationError instanceof ValidationError) {
+                // Pass the actual validation issues through to the API error
                 throw new APIError("BAD_REQUEST", {
                   message: "Schema validation failed",
-                  details: validationError.issues,
+                  details: {
+                    issues: validationError.issues,
+                    summary: validationError.message
+                  },
                 });
               } else {
                 throw new APIError("BAD_REQUEST", {
@@ -73,7 +77,6 @@ export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
               });
             }
           }
-
         } catch (error) {
           // Centralized error handling for unexpected errors
           if (error instanceof APIError) {
