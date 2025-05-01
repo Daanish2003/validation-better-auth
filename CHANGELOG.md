@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.3.0
+
+### Minor Changes
+
+- 6ff813c: version 1.3
+
 ## 1.2.7
 
 ### Patch Changes
