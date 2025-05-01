@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.2.4
+
+### Patch Changes
+
+- b3f8f08: remove-depency
+
 ## 1.2.3
 
 ### Patch Changes
