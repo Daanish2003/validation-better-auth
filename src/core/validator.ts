@@ -1,8 +1,8 @@
 import { BetterAuthPlugin } from "better-auth/types";
 import { createAuthMiddleware } from "better-auth/plugins";
 import { APIError } from "better-auth/api";
-import { ValidationConfig } from "../types/index";
-import { parseStandardSchema, ValidationError } from "./adapters/index";
+import { ValidationConfig } from "../types/index.js";
+import { parseStandardSchema, ValidationError } from "./adapters/index.js";
 
 export const validator = (configs: ValidationConfig[]): BetterAuthPlugin => {
   return {

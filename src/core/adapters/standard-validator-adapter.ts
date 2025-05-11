@@ -1,4 +1,4 @@
-import { StandardSchemaV1 } from "../../types/standard-schema";
+import { StandardSchemaV1 } from "../../types/standard-schema.js";
 
 export async function parseStandardSchema<TSchema extends StandardSchemaV1>(
 	schema: TSchema,

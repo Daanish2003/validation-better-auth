@@ -1,5 +1,5 @@
 import { InputContext } from "better-auth/*";
-import { StandardSchemaV1 } from "./standard-schema";
+import { StandardSchemaV1 } from "./standard-schema.js";
 import * as yup from 'yup';
 
 export type ValidationConfig = {
