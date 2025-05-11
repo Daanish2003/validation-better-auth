@@ -11,7 +11,7 @@
       "import": "./dist/index.mjs"
     }
   },
-  "type": "commonjs",
+  "type": "module",
   "files": [
     "dist"
   ],
@@ -49,13 +49,15 @@
     "@biomejs/biome": "^1.9.4",
     "@changesets/cli": "^2.29.2",
     "arktype": "^2.1.20",
-    "better-auth": "^1.2.7",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
     "valibot": "1.0.0-rc.0",
     "vitest": "^2.1.9",
     "yup": "^1.6.1",
     "zod": "^3.24.3"
+  },
+  "peerDependencies": {
+    "better-auth": "^1.2.0"
   },
   "packageManager": "pnpm@10.2.1+sha512.398035c7bd696d0ba0b10a688ed558285329d27ea994804a52bad9167d8e3a72bcb993f9699585d3ca25779ac64949ef422757a6c31102c12ab932e5cbe5cc92"
 }

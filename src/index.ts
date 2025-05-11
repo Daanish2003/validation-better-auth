@@ -1,2 +1,2 @@
-export * from "./core/validator";
-export * from "./core/adapters/index";
+export * from "./core/validator.js";
+export * from "./core/adapters/index.js";
