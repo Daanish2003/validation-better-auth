@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.3.2
+
+### Patch Changes
+
+- 4ae8ed7: fix-module
+
 ## 1.3.1
 
 ### Patch Changes
