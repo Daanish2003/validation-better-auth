@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.3.3
+
+### Patch Changes
+
+- c8b74bc: add types for esm
+
 ## 1.3.2
 
 ### Patch Changes
