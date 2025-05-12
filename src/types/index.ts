@@ -1,4 +1,4 @@
-import { InputContext } from "better-auth/*";
+import { InputContext } from "better-auth";
 import { StandardSchemaV1 } from "./standard-schema.js";
 import * as yup from 'yup';
 
