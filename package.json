@@ -9,7 +9,7 @@
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts",
+      "types": "./dist/index.d.ts"
     }
   },
   "type": "module",
