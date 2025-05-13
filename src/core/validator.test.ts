@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import * as v from "valibot";
 import { describe, it } from "vitest";
-import { validator } from "../index";
+import { validator } from "../";
 import * as yup from 'yup';
 import { type } from "arktype";
 import { z } from "zod"

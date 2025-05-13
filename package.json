@@ -7,18 +7,17 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/index.mjs"
     }
   },
-  "type": "module",
   "files": [
     "dist"
   ],
   "scripts": {
     "test": "vitest run",
-    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "build": "tsup",
     "lint": "tsc",
     "quality": "biome check .",
     "quality-fix": "biome check . --write --unsafe",

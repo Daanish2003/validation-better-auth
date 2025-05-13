@@ -1,6 +1,6 @@
 import * as yup from "yup";
-import type { YupValidationAdapter, YupStandardSchema } from "../../types/index.js";
-import { StandardSchemaV1 } from "../../types/standard-schema.js";
+import type { YupValidationAdapter, YupStandardSchema } from "../../types";
+import { StandardSchemaV1 } from "../../types/standard-schema";
 
 
 function standardizeYup<Schema extends yup.Schema>(
