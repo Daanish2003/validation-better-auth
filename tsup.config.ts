@@ -8,5 +8,5 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
-  target: 'es2020',
+  target: 'esnext',
 });
