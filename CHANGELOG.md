@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.3.4
+
+### Patch Changes
+
+- 492751f: fix-module-resolve-build
+
 ## 1.3.3
 
 ### Patch Changes
