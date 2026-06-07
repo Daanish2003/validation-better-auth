@@ -1,12 +1,16 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/index.ts"],
-  outDir:'dist',
-  format: ["cjs", "esm"], // Build for commonJS and ESmodules
-  dts: true, // Generate declaration file (.d.ts)
+  entry: {
+    index: "src/index.ts",
+    yup: "src/core/adapters/yup-adapter.ts",
+  },
+  outDir: "dist",
+  format: ["cjs", "esm"],
+  dts: true,
   splitting: false,
   sourcemap: true,
   clean: true,
-  target: 'esnext',
+  target: "es2020",
+  treeshake: true,
 });

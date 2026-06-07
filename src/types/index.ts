@@ -1,26 +1,22 @@
 import { InputContext } from "better-auth";
+import * as yup from "yup";
 import { StandardSchemaV1 } from "./standard-schema";
-import * as yup from 'yup';
 
 export type ValidationConfig = {
   path: string;
-  before?: (ctx: InputContext<any, any>) => void
-  schema?: StandardSchemaV1
+  before?: (ctx: InputContext<any, any>) => void;
+  schema?: StandardSchemaV1;
   adapter?: {
-    validate: (
-      input: StandardSchemaV1.InferInput<any>
-    ) => Promise<StandardSchemaV1.InferOutput<any>>;
-  }
-  after?: (ctx: InputContext<any, any>) => void 
+    validate: (input: unknown) => Promise<StandardSchemaV1.Result<unknown>>;
+  };
+  after?: (ctx: InputContext<any, any>) => void;
 };
 
 export type YupStandardSchema<Y extends yup.Schema<any>> = Y & {
-  '~standard': {
+  "~standard": {
     version: 1;
-    vendor: 'yup';
-    validate: (
-      value: unknown
-    ) =>
+    vendor: "yup";
+    validate: (value: unknown) =>
       | { value: yup.InferType<Y> }
       | {
           issues: ReadonlyArray<{
@@ -35,12 +31,8 @@ export type YupStandardSchema<Y extends yup.Schema<any>> = Y & {
   };
 };
 
-export type YupValidationAdapter<T extends yup.Schema<any>> = (
-  schema: T
-) => {
+export type YupValidationAdapter<T extends yup.Schema<any>> = (schema: T) => {
   validate: (
-    input: StandardSchemaV1.InferInput<YupStandardSchema<T>>
-  ) => Promise<StandardSchemaV1.InferOutput<YupStandardSchema<T>>>;
+    input: unknown,
+  ) => Promise<StandardSchemaV1.Result<yup.InferType<T>>>;
 };
-
-
