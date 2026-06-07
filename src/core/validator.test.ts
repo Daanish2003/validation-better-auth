@@ -1,10 +1,10 @@
+import { type } from "arktype";
 import { betterAuth } from "better-auth";
 import * as v from "valibot";
 import { describe, it } from "vitest";
+import * as yup from "yup";
+import { z } from "zod";
 import { validator } from "../";
-import * as yup from 'yup';
-import { type } from "arktype";
-import { z } from "zod"
 import { YupAdapter } from "./adapters/yup-adapter";
 
 describe("validator", () => {
@@ -16,16 +16,12 @@ describe("validator", () => {
     });
 
     betterAuth({
-      plugins: [
-        validator([
-          { path: "/sign-up/email", schema: signupSchema },
-        ]),
-      ],
+      plugins: [validator([{ path: "/sign-up/email", schema: signupSchema }])],
     });
   });
 
   it("initializes without errors with arktype", () => {
-    const Password = type("string >= 8").configure({ actual: () => "" })
+    const Password = type("string >= 8").configure({ actual: () => "" });
     const signupSchema = type({
       name: "string",
       email: "string.email",
@@ -33,11 +29,7 @@ describe("validator", () => {
     });
 
     betterAuth({
-      plugins: [
-        validator([
-          { path: "/sign-up/email", schema: signupSchema },
-        ]),
-      ],
+      plugins: [validator([{ path: "/sign-up/email", schema: signupSchema }])],
     });
   });
 
@@ -49,11 +41,7 @@ describe("validator", () => {
     });
 
     betterAuth({
-      plugins: [
-        validator([
-          { path: "/sign-up/email", schema: signupSchema },
-        ]),
-      ],
+      plugins: [validator([{ path: "/sign-up/email", schema: signupSchema }])],
     });
   });
 
@@ -73,4 +61,3 @@ describe("validator", () => {
     });
   });
 });
-

@@ -3,18 +3,38 @@
   "version": "1.3.4",
   "description": "A flexible and extensible validation plugin for the Better Auth framework. This package allows developers to validate API request using standard library",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./yup": {
+      "import": {
+        "types": "./dist/yup.d.ts",
+        "default": "./dist/yup.js"
+      },
+      "require": {
+        "types": "./dist/yup.d.cts",
+        "default": "./dist/yup.cjs"
+      }
     }
   },
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "test": "vitest run",
     "build": "tsup",
@@ -22,7 +42,7 @@
     "quality": "biome check .",
     "quality-fix": "biome check . --write --unsafe",
     "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish",
-    "ci": "pnpm run lint && pnpm run test && pnpm run build"
+    "ci": "pnpm run lint && pnpm run test && pnpm run build && publint"
   },
   "repository": {
     "type": "git",
@@ -46,18 +66,27 @@
   },
   "homepage": "https://github.com/Daanish2003/better-auth-validator#readme",
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@changesets/cli": "^2.29.2",
-    "arktype": "^2.1.20",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.3",
-    "valibot": "1.0.0-rc.0",
-    "vitest": "^2.1.9",
-    "yup": "^1.6.1",
-    "zod": "^3.24.3"
+    "@biomejs/biome": "^2.4.16",
+    "@changesets/cli": "^2.31.0",
+    "arktype": "^2.2.0",
+    "better-auth": "^1.6.14",
+    "publint": "^0.3.12",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "valibot": "1.4.1",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8",
+    "yup": "^1.7.1",
+    "zod": "^4.4.3"
   },
   "peerDependencies": {
-    "better-auth": "^1.2.0"
+    "better-auth": ">=1.2.0",
+    "yup": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "yup": {
+      "optional": true
+    }
   },
   "packageManager": "pnpm@10.2.1+sha512.398035c7bd696d0ba0b10a688ed558285329d27ea994804a52bad9167d8e3a72bcb993f9699585d3ca25779ac64949ef422757a6c31102c12ab932e5cbe5cc92"
 }
