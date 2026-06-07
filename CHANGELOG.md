@@ -1,5 +1,11 @@
 # validation-better-auth
 
+## 1.3.5
+
+### Patch Changes
+
+- d0c9f9f: Add validation pipeline coverage and improve standard schema adapter exports.
+
 ## 1.3.4
 
 ### Patch Changes
